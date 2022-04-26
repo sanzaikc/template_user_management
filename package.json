@@ -5,7 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "start": "node ./dist/app.js",
+    "start": "node ./dist/server.js",
     "start:prod": "SET NODE_ENV=production&& nodemon ./dist/server.js",
     "postinstall": "tsc"
   },
