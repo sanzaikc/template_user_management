@@ -6,7 +6,7 @@ import * as userController from "./../controllers/userController";
 const router = Router();
 
 // Allow only authenticated user's access
-router.use(authController.protect);
+// router.use(authController.protect);
 
 router
   .route("/")
