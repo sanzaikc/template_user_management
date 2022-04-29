@@ -2,7 +2,6 @@ import { promisify } from "util";
 import { Request, Response, NextFunction } from "express";
 import crypto from "crypto";
 import dotenv from "dotenv";
-// const jwt = require("jsonwebtoken");
 import * as jwt from "jsonwebtoken";
 
 import AppError from "../utils/AppError";
@@ -70,7 +69,6 @@ export const protect = catchAsync(
       );
 
     // Verifing the token
-    // const decoded: any = await promisify(jwt.verify)(token, _jwt_secret);
     const decoded: any = jwt.verify(token, _jwt_secret);
 
     // Check if user exists
@@ -105,11 +103,6 @@ export const isLoggedIn = async (
 ) => {
   try {
     if (!req.cookies.jwt) return next();
-
-    // const decoded: any = await promisify(jwt.verify)(
-    //   req.cookies.jwt,
-    //   process.env.JWT_SECRET
-    // );
 
     const decoded: any = jwt.verify(req.cookies.jwt, _jwt_secret);
 
@@ -203,8 +196,6 @@ export const forgotPassword = catchAsync(
     const resetUrl = `${req.protocol}://${req.get(
       "host"
     )}/api/v1/reset-password/${resetToken}`;
-
-    const message = `Forgot your password? Submit a PATCH request with your new password and passwordConfirm to :${resetUrl}.\n If you didn't forget your password, please ignore this email!`;
 
     try {
       await new Email(user, resetUrl).sendResetPassword();
