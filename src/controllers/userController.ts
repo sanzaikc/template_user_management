@@ -1,11 +1,25 @@
 import { Request, Response, NextFunction } from "express";
 
-import catchAsync from "../utils/catchAsync";
 import * as factory from "./factoryHandler";
 import User from "../models/userModel";
 
 export const getMe = (req: Request, res: Response, next: NextFunction) => {
   req.params.id = req.user.id;
+  next();
+};
+
+export const setDefaultPassword = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const defaultPassword = "password";
+
+  req.body.password = defaultPassword;
+  req.body.passwordConfirm = defaultPassword;
+
+  console.log(req);
+
   next();
 };
 

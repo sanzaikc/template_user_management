@@ -11,7 +11,7 @@ router.use(authController.protect);
 router
   .route("/")
   .get(userController.getAllUsers)
-  .post(userController.createUser);
+  .post(userController.setDefaultPassword, userController.createUser);
 
 router.route("/me").get(userController.getMe, userController.getUser);
 
