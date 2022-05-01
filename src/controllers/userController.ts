@@ -18,8 +18,6 @@ export const setDefaultPassword = (
   req.body.password = defaultPassword;
   req.body.passwordConfirm = defaultPassword;
 
-  console.log(req);
-
   next();
 };
 
