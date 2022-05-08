@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 
 import app from "./app";
 
-const databasePassword: string = process.env.DATABASE_PASSWORD || "";
 const dataBaseUrl: string = process.env.DATABASE || "";
+const databasePassword: string = process.env.DATABASE_PASSWORD || "";
 
 const databaseConnection: string = dataBaseUrl.replace(
-  "<PASSWORD>",
+  "<password>",
   databasePassword
 );
 
