@@ -6,9 +6,12 @@ import catchAsync from "../utils/catchAsync";
 
 export const getAll = (Model: any) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    // If routes include tour id (Review Model)
     let filter = {};
-    if (req.params.tourId) filter = { tour: req.params.tourId };
+
+    // User's collection: filter the logged in user
+    if (Model.collection.collectionName === "users") {
+      filter = { _id: { $ne: req.user.id } };
+    }
 
     const params = new APIParams(Model.find(filter), req.query)
       .filter()
