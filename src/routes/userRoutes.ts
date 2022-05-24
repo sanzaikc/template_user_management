@@ -9,7 +9,10 @@ const router = Router();
 // Allow only authenticated user's access
 router.use(authController.protect);
 
-router.route("/me").get(userController.getMe, userController.getUser);
+router
+  .route("/me")
+  .get(userController.getMe, userController.getUser)
+  .patch(userController.updateMe);
 
 // Access to admin only
 router.use(authController.restrictTo("admin"));
