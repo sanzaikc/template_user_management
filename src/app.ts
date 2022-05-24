@@ -16,6 +16,9 @@ dotenv.config();
 
 const app: express.Application = express();
 
+// SERVER STATIC FILES
+app.use(express.static(path.join(__dirname, "public")));
+
 // SETTING UP SERVER-SIDE RENDER ENGINE
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));

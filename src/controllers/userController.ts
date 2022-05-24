@@ -34,12 +34,13 @@ export const resizeUserPhoto = (
   sharp(req.file.buffer)
     .resize(500, 500, { fit: "cover" })
     .jpeg({ quality: 90 })
-    .toFile(`${photoDestination}${req.file.filename}`, (err) => {
-      console.log({ err });
-    });
+    .toFile(`${photoDestination}${req.file.filename}`);
 
   // Including the image path
-  req.file.filename = `${photoDestination}${req.file.filename}`;
+  req.file.filename = `${req.headers.host}/${photoDestination.replace(
+    "public/",
+    ""
+  )}${req.file.filename}`;
 
   next();
 };
