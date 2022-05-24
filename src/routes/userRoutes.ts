@@ -1,3 +1,4 @@
+import { getOne } from "./../controllers/factoryHandler";
 import { Router } from "express";
 
 import * as authController from "./../controllers/authController";
@@ -20,6 +21,7 @@ router
 
 router
   .route("/:id")
+  .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
 
