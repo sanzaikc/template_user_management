@@ -4,19 +4,11 @@ import * as factory from "./factoryHandler";
 import User from "../models/userModel";
 import AppError from "../utils/AppError";
 import catchAsync from "../utils/catchAsync";
+import filterObj from "../utils/filterObject";
 
 // interface MulterRequest extends Request {
 //   file: any;
 // }
-
-const filterObj = (obj: any, ...allowedFields: string[]) => {
-  let filteredObj: any = {};
-  Object.keys(obj).forEach((key: string) => {
-    if (allowedFields.includes(key)) filteredObj[key] = obj[key];
-  });
-
-  return filteredObj;
-};
 
 export const setDefaultPassword = (
   req: Request,
@@ -53,7 +45,7 @@ export const updateMe = catchAsync(
         new AppError("This route is not for password modifications", 400)
       );
 
-    const validReq = filterObj(req.body, "name", "email");
+    const validReq = filterObj(req.body, "name");
     // if (req.file) validReq.photo = req.file.filename;
 
     const updatedUser = await User.findByIdAndUpdate(req.user.id, validReq, {
@@ -67,6 +59,7 @@ export const updateMe = catchAsync(
         user: updatedUser,
       },
     });
+
     next();
   }
 );
