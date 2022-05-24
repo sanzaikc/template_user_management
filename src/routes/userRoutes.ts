@@ -12,7 +12,11 @@ router.use(authController.protect);
 router
   .route("/me")
   .get(userController.getMe, userController.getUser)
-  .patch(userController.updateMe);
+  .patch(
+    userController.uploadUserPhoto,
+    userController.resizeUserPhoto,
+    userController.updateMe
+  );
 
 // Access to admin only
 router.use(authController.restrictTo("admin"));

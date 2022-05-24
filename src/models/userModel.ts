@@ -37,7 +37,7 @@ const userSchema = new Schema({
     lowercase: true,
     validate: [validator.isEmail, "Please provide a valid email"],
   },
-  photo: String,
+  photo_url: String,
   role: {
     type: String,
     enum: {

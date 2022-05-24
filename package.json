@@ -28,6 +28,8 @@
     "typescript": "^4.6.3"
   },
   "dependencies": {
+    "@types/multer": "^1.4.7",
+    "@types/sharp": "^0.30.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -38,7 +40,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.9",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
     "nodemailer": "^6.7.3",
+    "sharp": "^0.30.5",
     "validator": "^13.7.0"
   }
 }
