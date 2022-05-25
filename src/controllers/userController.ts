@@ -37,10 +37,9 @@ export const resizeUserPhoto = (
     .toFile(`${photoDestination}${req.file.filename}`);
 
   // Including the image path
-  req.file.filename = `${req.headers.host}/${photoDestination.replace(
-    "public/",
-    ""
-  )}${req.file.filename}`;
+  req.file.filename = `${req.protocol}://${
+    req.headers.host
+  }/${photoDestination.replace("public/", "")}${req.file.filename}`;
 
   next();
 };
@@ -70,7 +69,7 @@ export const updateMe = catchAsync(
         new AppError("This route is not for password modifications", 400)
       );
 
-    const validReq = filterObj(req.body, "name");
+    const validReq = filterObj(req.body, "name", "photo_url");
     if (req.file) validReq.photo_url = req.file.filename;
 
     const updatedUser = await User.findByIdAndUpdate(req.user.id, validReq, {
