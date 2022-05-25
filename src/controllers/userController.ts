@@ -10,10 +10,10 @@ import catchAsync from "../utils/catchAsync";
 import filterObj from "../utils/filterObject";
 import User from "../models/userModel";
 
+// Multer config for user photo
 const photoDestination = "public/img/users/";
-const storage = multer.memoryStorage();
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   fileFilter: multerFilter,
 });
 
@@ -69,7 +69,7 @@ export const updateMe = catchAsync(
         new AppError("This route is not for password modifications", 400)
       );
 
-    const validReq = filterObj(req.body, "name", "photo_url");
+    const validReq = filterObj(req.body, "name");
     if (req.file) validReq.photo_url = req.file.filename;
 
     const updatedUser = await User.findByIdAndUpdate(req.user.id, validReq, {
