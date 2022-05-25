@@ -9,9 +9,9 @@ export const getAll = (Model: any) =>
     let filter = {};
 
     // User's collection: filter the logged in user
-    if (Model.collection.collectionName === "users") {
-      filter = { _id: { $ne: req.user.id } };
-    }
+    // if (Model.collection.collectionName === "users") {
+    //   filter = { _id: { $ne: req.user.id } };
+    // }
 
     const params = new APIParams(Model.find(filter), req.query)
       .filter()
