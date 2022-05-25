@@ -66,7 +66,7 @@ export const updateMe = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     if (req.body.password || req.body.passwordConfirm)
       return next(
-        new AppError("This route is not for password modifications", 400)
+        new AppError("Unauthorized password modification method", 400)
       );
 
     const validReq = filterObj(req.body, "name");
